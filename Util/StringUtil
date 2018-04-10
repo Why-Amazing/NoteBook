@@ -1,0 +1,27 @@
+	/**
+	 * 去除特殊字符
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String replaceSpecial(String str) {
+		return replaceSpecial(str, true);
+	}
+
+	/**
+	 * @param str
+	 * @return
+	 */
+	public static String replaceSpecial(String str, boolean b) {
+		if (str == null || "".equals(str)) {
+			return null;
+		}
+		String regEx = "[`~!@#$%^&*()+=|{}':;',//[//].<>/?~！@#￥%……&*（）_《》——+|{}【】‘；：”“’。，、\\\\？\"\"]";
+		Pattern p = Pattern.compile(regEx);
+		Matcher m = p.matcher(str);
+		str = m.replaceAll("").replace("[", "").replace("]", "").replace("-", "").trim();
+		if (b && "".equals(str)) {
+			return "id:''";
+		}
+		return str;
+	}
